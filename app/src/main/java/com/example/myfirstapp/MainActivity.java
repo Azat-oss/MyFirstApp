@@ -19,20 +19,46 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.example.core.Counter;
+
+
 public class MainActivity extends AppCompatActivity {
 
+    private Counter counter;
     private static final String CHANNEL_ID = "my_channel_id";
     private TextView textView;
+    private TextView textViewCounter;
     private Button button;
+    private Button buttonAdd;
+    private Button buttonReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        counter = new Counter(0, 1);
+
 
         textView = findViewById(R.id.textView);
+        textViewCounter = findViewById(R.id.textViewCounter);
         button = findViewById(R.id.button);
+        buttonAdd = findViewById(R.id.buttonAdd);
+        buttonReset = findViewById(R.id.buttonReset);
+
+        buttonAdd.setOnClickListener(v -> {
+            counter.increment();
+            updateUi();
+        });
+
+        buttonReset.setOnClickListener(v -> {
+            counter.reset();
+            updateUi();
+        });
+
+
+
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
@@ -48,7 +74,16 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText("Кнопка нажата!");
             }
         });
+
+
+
     }
+
+    private void updateUi() {
+        textViewCounter.setText(String.valueOf(counter.getCount()));
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

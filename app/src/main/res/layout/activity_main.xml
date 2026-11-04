@@ -21,6 +21,27 @@
         android:layout_marginTop="24dp"
         android:text="Нажми сюда" />
 
+    <TextView
+        android:id="@+id/textViewCounter"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="0"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="+1" />
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Сброс" />
+
 
 </LinearLayout>
 
